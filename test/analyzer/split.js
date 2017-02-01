@@ -1,4 +1,3 @@
-var through = require('through2');
 var Token = require('../../lib/Token');
 var split = require('../../analyzer/split');
 

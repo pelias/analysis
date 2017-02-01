@@ -4,7 +4,8 @@ var util = require('../lib/util');
 
 var tests = [
   './lib/Token',
-  './analyzer/split'
+  './analyzer/split',
+  './analyzer/unique',
 ];
 
 // test runner

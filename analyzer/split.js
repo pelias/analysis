@@ -1,9 +1,11 @@
 
 var through = require('through2');
 
-/** options:
+/**
+  split - split tokens on whitespace
 
-  markAllComplete [bool] - mark all tokens as isComplete:true
+  options:
+  - markAllComplete [bool] - mark all tokens as isComplete:true
 **/
 
 function factory( options ){
