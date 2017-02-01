@@ -10,6 +10,7 @@ var tests = [
   './analyzer/charmap',
   './analyzer/lowercase',
   './analyzer/ordinals',
+  './analyzer/singular',
 ];
 
 // test runner
