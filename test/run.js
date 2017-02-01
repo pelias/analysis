@@ -11,6 +11,7 @@ var tests = [
   './analyzer/lowercase',
   './analyzer/ordinals',
   './analyzer/singular',
+  './analyzer/anchors',
 ];
 
 // test runner
