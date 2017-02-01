@@ -9,6 +9,7 @@ var tests = [
   './analyzer/diacritic',
   './analyzer/charmap',
   './analyzer/lowercase',
+  './analyzer/ordinals',
 ];
 
 // test runner
