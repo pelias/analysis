@@ -12,6 +12,7 @@ var tests = [
   './analyzer/ordinals',
   './analyzer/singular',
   './analyzer/anchors',
+  './analyzer/synonyms',
 ];
 
 // test runner
