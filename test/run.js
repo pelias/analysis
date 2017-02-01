@@ -7,6 +7,7 @@ var tests = [
   './analyzer/split',
   './analyzer/unique',
   './analyzer/diacritic',
+  './analyzer/charmap',
 ];
 
 // test runner
