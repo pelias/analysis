@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var split = require('../../analyzer/split');
+var split = require('../../tokenizer/split');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(split.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = split( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = split( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -18,8 +18,8 @@ module.exports.interface = function(test, util) {
 module.exports.split = function(test, util) {
   test('test split', function(t) {
 
-    var analyzer = split();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = split();
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // total token count
       t.equal( tokens.length, 2, 'two tokens produced' );
@@ -39,14 +39,14 @@ module.exports.split = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'Hello World!' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'Hello World!' ) );
+    tokenizer.end();
   });
 
   test('markAllComplete', function(t) {
 
-    var analyzer = split({ markAllComplete: true });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = split({ markAllComplete: true });
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // marked as complete (would usually be false, now true)
       t.equal( tokens[1].isComplete, true, 'second token' );
@@ -54,7 +54,7 @@ module.exports.split = function(test, util) {
 
     }));
 
-    analyzer.write( new Token( 'Hello World!' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'Hello World!' ) );
+    tokenizer.end();
   });
 };

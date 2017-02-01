@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var lowercase = require('../../analyzer/lowercase');
+var lowercase = require('../../tokenizer/lowercase');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(lowercase.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = lowercase( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = lowercase( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -18,8 +18,8 @@ module.exports.interface = function(test, util) {
 module.exports.lowercase = function(test, util) {
   test('test lowercase', function(t) {
 
-    var analyzer = lowercase();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = lowercase();
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // total token count
       t.equal( tokens.length, 3, 'three tokens produced' );
@@ -32,9 +32,9 @@ module.exports.lowercase = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'Hello WoRLd' ) );
-    analyzer.write( new Token( 'Hello' ) );
-    analyzer.write( new Token( 'WoRLd' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'Hello WoRLd' ) );
+    tokenizer.write( new Token( 'Hello' ) );
+    tokenizer.write( new Token( 'WoRLd' ) );
+    tokenizer.end();
   });
 };

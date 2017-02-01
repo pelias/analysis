@@ -4,15 +4,15 @@ var util = require('../lib/util');
 
 var tests = [
   './lib/Token',
-  './analyzer/split',
-  './analyzer/unique',
-  './analyzer/diacritic',
-  './analyzer/charmap',
-  './analyzer/lowercase',
-  './analyzer/ordinals',
-  './analyzer/singular',
-  './analyzer/anchors',
-  './analyzer/synonyms',
+  './tokenizer/split',
+  './tokenizer/unique',
+  './tokenizer/diacritic',
+  './tokenizer/charmap',
+  './tokenizer/lowercase',
+  './tokenizer/ordinals',
+  './tokenizer/singular',
+  './tokenizer/anchors',
+  './tokenizer/synonyms',
 ];
 
 // test runner

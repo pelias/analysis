@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var charmap = require('../../analyzer/charmap');
+var charmap = require('../../tokenizer/charmap');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(charmap.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = charmap( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = charmap( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -25,8 +25,8 @@ module.exports.charmap = function(test, util) {
       '#': ''
     };
 
-    var analyzer = charmap({ map: map });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = charmap({ map: map });
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // characters have been replaced
       t.equal( tokens[0].body, 'apple', 'first token' );
@@ -35,9 +35,9 @@ module.exports.charmap = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'ap$ple.' ) );
-    analyzer.write( new Token( '@insertcoffee #foo ' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'ap$ple.' ) );
+    tokenizer.write( new Token( '@insertcoffee #foo ' ) );
+    tokenizer.end();
   });
   test('do not emit empty tokens', function(t) {
 
@@ -46,8 +46,8 @@ module.exports.charmap = function(test, util) {
       '.': '',
     };
 
-    var analyzer = charmap({ map: map });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = charmap({ map: map });
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // characters have all been removed
       t.equal( tokens.length, 0, 'no tokens produced' );
@@ -55,7 +55,7 @@ module.exports.charmap = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( '$.$..' ) );
-    analyzer.end();
+    tokenizer.write( new Token( '$.$..' ) );
+    tokenizer.end();
   });
 };

@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var unique = require('../../analyzer/unique');
+var unique = require('../../tokenizer/unique');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(unique.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = unique( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = unique( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -18,8 +18,8 @@ module.exports.interface = function(test, util) {
 module.exports.unique = function(test, util) {
   test('test unique', function(t) {
 
-    var analyzer = unique();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = unique();
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // total token count
       t.equal( tokens.length, 2, 'two tokens produced' );
@@ -31,11 +31,11 @@ module.exports.unique = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'apple' ) );
-    analyzer.write( new Token( 'apple' ) );
-    analyzer.write( new Token( 'pear' ) );
-    analyzer.write( new Token( 'apple' ) );
-    analyzer.write( new Token( 'pear' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'apple' ) );
+    tokenizer.write( new Token( 'apple' ) );
+    tokenizer.write( new Token( 'pear' ) );
+    tokenizer.write( new Token( 'apple' ) );
+    tokenizer.write( new Token( 'pear' ) );
+    tokenizer.end();
   });
 };

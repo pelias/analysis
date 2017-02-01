@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var anchors = require('../../analyzer/anchors');
+var anchors = require('../../tokenizer/anchors');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(anchors.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = anchors( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = anchors( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -18,8 +18,8 @@ module.exports.interface = function(test, util) {
 module.exports.anchors = function(test, util) {
   test('anchor completed tokens', function(t) {
 
-    var analyzer = anchors();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = anchors();
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, 'hello\x03', 'first token' );
       t.equal( tokens[1].body, 'world', 'second token' );
       t.end();
@@ -31,15 +31,15 @@ module.exports.anchors = function(test, util) {
     var token2 = new Token( 'world' );
     token2.isComplete = false;
 
-    analyzer.write( token1 );
-    analyzer.write( token2 );
-    analyzer.end();
+    tokenizer.write( token1 );
+    tokenizer.write( token2 );
+    tokenizer.end();
   });
 
   test('anchor numbers', function(t) {
 
-    var analyzer = anchors();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = anchors();
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, '2500\x03', 'first token' );
       t.equal( tokens[1].body, '100', 'second token' );
       t.end();
@@ -51,8 +51,8 @@ module.exports.anchors = function(test, util) {
     var token2 = new Token( '100' );
     token2.isComplete = false;
 
-    analyzer.write( token1 );
-    analyzer.write( token2 );
-    analyzer.end();
+    tokenizer.write( token1 );
+    tokenizer.write( token2 );
+    tokenizer.end();
   });
 };

@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var diacritic = require('../../analyzer/diacritic');
+var diacritic = require('../../tokenizer/diacritic');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(diacritic.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = diacritic( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = diacritic( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -18,8 +18,8 @@ module.exports.interface = function(test, util) {
 module.exports.diacritic = function(test, util) {
   test('test diacritic', function(t) {
 
-    var analyzer = diacritic();
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = diacritic();
+    tokenizer.pipe( util.collect( function( tokens ){
 
       // accents have been removed
       t.equal( tokens[0].body, 'zuzo', 'first token' );
@@ -29,9 +29,9 @@ module.exports.diacritic = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'žůžo' ) );
-    analyzer.write( new Token( 'Cinématte' ) );
-    analyzer.write( new Token( 'Špindlerův Mlýn' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'žůžo' ) );
+    tokenizer.write( new Token( 'Cinématte' ) );
+    tokenizer.write( new Token( 'Špindlerův Mlýn' ) );
+    tokenizer.end();
   });
 };

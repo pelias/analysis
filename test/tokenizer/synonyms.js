@@ -1,5 +1,5 @@
 var Token = require('../../lib/Token');
-var synonyms = require('../../analyzer/synonyms');
+var synonyms = require('../../tokenizer/synonyms');
 
 module.exports.interface = function(test, util) {
   test('factory', function(t) {
@@ -7,10 +7,10 @@ module.exports.interface = function(test, util) {
     t.equal(synonyms.length, 1, 'factory accepts options arg');
     t.end();
   });
-  test('analyzer', function(t) {
-    var analyzer = synonyms( null );
-    t.equal(typeof analyzer, 'object', 'returns an analyzer stream');
-    t.equal(analyzer.constructor.name, 'DestroyableTransform', 'valid stream');
+  test('tokenizer', function(t) {
+    var tokenizer = synonyms( null );
+    t.equal(typeof tokenizer, 'object', 'returns an tokenizer stream');
+    t.equal(tokenizer.constructor.name, 'DestroyableTransform', 'valid stream');
     t.end();
   });
 };
@@ -23,8 +23,8 @@ module.exports.synonyms = function(test, util) {
       'b': 'btest'
     };
 
-    var analyzer = synonyms({ map: map });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = synonyms({ map: map });
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, 'atest', 'first token' );
       t.equal( tokens[1].body, 'btest', 'second token' );
       t.equal( tokens[2].body, 'c', 'third token' );
@@ -32,11 +32,11 @@ module.exports.synonyms = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'a' ) );
-    analyzer.write( new Token( 'b' ) );
-    analyzer.write( new Token( 'c' ) );
-    analyzer.write( new Token( 'abacus' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'a' ) );
+    tokenizer.write( new Token( 'b' ) );
+    tokenizer.write( new Token( 'c' ) );
+    tokenizer.write( new Token( 'abacus' ) );
+    tokenizer.end();
   });
 
   test('keep original', function(t) {
@@ -46,8 +46,8 @@ module.exports.synonyms = function(test, util) {
       'b': 'btest'
     };
 
-    var analyzer = synonyms({ map: map, keepOriginal: true });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = synonyms({ map: map, keepOriginal: true });
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, 'a', 'first token' );
       t.equal( tokens[1].body, 'atest', 'first token' );
       t.equal( tokens[2].body, 'b', 'second token' );
@@ -57,11 +57,11 @@ module.exports.synonyms = function(test, util) {
       t.end();
     }));
 
-    analyzer.write( new Token( 'a' ) );
-    analyzer.write( new Token( 'b' ) );
-    analyzer.write( new Token( 'c' ) );
-    analyzer.write( new Token( 'abacus' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'a' ) );
+    tokenizer.write( new Token( 'b' ) );
+    tokenizer.write( new Token( 'c' ) );
+    tokenizer.write( new Token( 'abacus' ) );
+    tokenizer.end();
   });
 
   test('specific position', function(t) {
@@ -70,8 +70,8 @@ module.exports.synonyms = function(test, util) {
       'a': 'atest'
     };
 
-    var analyzer = synonyms({ map: map, position: 999 });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = synonyms({ map: map, position: 999 });
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, 'a', 'first token' );
       t.equal( tokens[1].body, 'atest', 'second token' );
       t.equal( tokens[2].body, 'a', 'third token' );
@@ -83,10 +83,10 @@ module.exports.synonyms = function(test, util) {
     token2.position = 999;
     var token3 = new Token( 'a' );
 
-    analyzer.write( token1 );
-    analyzer.write( token2 );
-    analyzer.write( token3 );
-    analyzer.end();
+    tokenizer.write( token1 );
+    tokenizer.write( token2 );
+    tokenizer.write( token3 );
+    tokenizer.end();
   });
 };
 
@@ -99,17 +99,17 @@ module.exports.addresses = function(test, util) {
       'ave\x03': 'avenue\x03'
     };
 
-    var analyzer = synonyms({ map: map });
-    analyzer.pipe( util.collect( function( tokens ){
+    var tokenizer = synonyms({ map: map });
+    tokenizer.pipe( util.collect( function( tokens ){
       t.equal( tokens[0].body, 'street\x03', 'first token' );
       t.equal( tokens[1].body, 'road\x03', 'second token' );
       t.equal( tokens[2].body, 'avenue\x03', 'third token' );
       t.end();
     }));
 
-    analyzer.write( new Token( 'st\x03' ) );
-    analyzer.write( new Token( 'rd\x03' ) );
-    analyzer.write( new Token( 'ave\x03' ) );
-    analyzer.end();
+    tokenizer.write( new Token( 'st\x03' ) );
+    tokenizer.write( new Token( 'rd\x03' ) );
+    tokenizer.write( new Token( 'ave\x03' ) );
+    tokenizer.end();
   });
 };
