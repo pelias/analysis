@@ -6,6 +6,7 @@ var tests = [
   './lib/Token',
   './analyzer/split',
   './analyzer/unique',
+  './analyzer/diacritic',
 ];
 
 // test runner
