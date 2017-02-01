@@ -63,6 +63,31 @@ module.exports.synonyms = function(test, util) {
     analyzer.write( new Token( 'abacus' ) );
     analyzer.end();
   });
+
+  test('specific position', function(t) {
+
+    var map = {
+      'a': 'atest'
+    };
+
+    var analyzer = synonyms({ map: map, position: 999 });
+    analyzer.pipe( util.collect( function( tokens ){
+      t.equal( tokens[0].body, 'a', 'first token' );
+      t.equal( tokens[1].body, 'atest', 'second token' );
+      t.equal( tokens[2].body, 'a', 'third token' );
+      t.end();
+    }));
+
+    var token1 = new Token( 'a' );
+    var token2 = new Token( 'a' );
+    token2.position = 999;
+    var token3 = new Token( 'a' );
+
+    analyzer.write( token1 );
+    analyzer.write( token2 );
+    analyzer.write( token3 );
+    analyzer.end();
+  });
 };
 
 module.exports.addresses = function(test, util) {
