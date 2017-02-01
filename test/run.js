@@ -8,6 +8,7 @@ var tests = [
   './analyzer/unique',
   './analyzer/diacritic',
   './analyzer/charmap',
+  './analyzer/lowercase',
 ];
 
 // test runner
