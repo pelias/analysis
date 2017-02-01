@@ -13,6 +13,7 @@ var tests = [
   './tokenizer/singular',
   './tokenizer/anchors',
   './tokenizer/synonyms',
+  './tokenizer/prefixngram',
 ];
 
 // test runner
