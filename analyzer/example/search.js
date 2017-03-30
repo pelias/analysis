@@ -1,9 +1,9 @@
 
 var through = require('through2'),
     requireDir = require('require-dir'),
-    tokenizer = requireDir('../tokenizer'),
-    config = requireDir('../config'),
-    util = require('../lib/util');
+    tokenizer = requireDir('../../tokenizer'),
+    config = requireDir('../../config'),
+    util = require('../../lib/util');
 
 function analyzer( token, cb ){
   var tap = through.obj();

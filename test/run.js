@@ -14,8 +14,8 @@ var tests = [
   './tokenizer/anchors',
   './tokenizer/synonyms',
   './tokenizer/prefixngram',
-  './analyzer/index',
-  './analyzer/search',
+  './analyzer/example/index',
+  './analyzer/example/search',
 ];
 
 // test runner
