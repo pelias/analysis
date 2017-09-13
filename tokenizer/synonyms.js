@@ -1,42 +1,37 @@
 
-var through = require('through2');
-
 /**
   synonyms - replace tokens with synonyms
 
-  options:
+  context:
   - map [object] - map all occurrences of {key} to {value}
-  - keepOriginal [bool] - also keep the original token
   - position [int] - only replace tokens at this term position
 **/
 
-function factory( options ){
-  options = options || {};
-  options.map = options.map || {};
+function synonyms( res, cur ){
 
-  return through.obj( function( token, _, next ){
+  if( !this.map ){ throw new Error( 'invalid map' ); }
 
-    // only substitute tokens in certain position
-    if( !options.hasOwnProperty('position') || options.position === token.position ){
+  // split words
+  var words = cur.split(/\s+/);
+
+  res.push( words.map(( word, pos ) => {
+
+    // only substitute tokens in certain position (allow negative positions)
+    if( !this.hasOwnProperty('position') || pos === ( this.position >= 0 ? this.position : this.position + words.length ) ){
 
       // check map for substitution
-      if( options.map.hasOwnProperty( token.body ) ){
-
-        // $keepOriginal flag allows control over whether
-        // the original token is discarded or not.
-        if( true === options.keepOriginal ){
-          var token2 = token.clone();
-          this.push( token2 );
-        }
+      if( this.map.hasOwnProperty( word ) ){
 
         // replace token with synonym
-        token.body = options.map[ token.body ];
+        return this.map[ word ];
       }
     }
 
-    this.push( token );
-    next();
-  });
+    return word;
+
+  }, this).join(' ') );
+
+  return res;
 }
 
-module.exports = factory;
+module.exports = synonyms;

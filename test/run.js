@@ -3,19 +3,17 @@ var path = require('path');
 var util = require('../lib/util');
 
 var tests = [
-  './lib/Token',
-  './tokenizer/split',
+  // './lib/Token',
   './tokenizer/unique',
   './tokenizer/diacritic',
   './tokenizer/charmap',
   './tokenizer/lowercase',
   './tokenizer/ordinals',
   './tokenizer/singular',
-  './tokenizer/anchors',
   './tokenizer/synonyms',
   './tokenizer/prefixngram',
   './analyzer/example/index',
-  './analyzer/example/search',
+  // './analyzer/example/search',
 ];
 
 // test runner

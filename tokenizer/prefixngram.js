@@ -1,32 +1,24 @@
 
-var through = require('through2');
-
 /**
   prefixngram - split token in to prefix grams
 **/
 
-function factory( options ){
-  options = options || {};
+function prefixngram( res, cur ){
 
-  return through.obj( function( token, _, next ){
+  var chars = cur.split('');
+  var buffer = '';
 
-    var chars = token.body.split('');
-    var buffer = '';
+  chars.forEach( function( char ){
 
-    chars.forEach( function( char ){
+    // buffer prefix
+    buffer += char;
 
-      // buffer prefix
-      buffer += char;
+    // clone token
+    res.push( buffer );
 
-      // clone token
-      var t = token.clone();
-      t.body = buffer;
-      this.push( t );
-
-    }, this);
-
-    next();
   });
+
+  return res;
 }
 
-module.exports = factory;
+module.exports = prefixngram;
