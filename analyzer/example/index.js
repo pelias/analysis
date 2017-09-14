@@ -19,4 +19,4 @@ function analyzer( ctx ){
   );
 }
 
-module.exports = analyzer;
+module.exports = util.cache( analyzer );
