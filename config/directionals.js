@@ -1,7 +1,7 @@
 
 // a list of contractions -> expansions for common compass directionals
 
-module.exports = {
+module.exports.en = {
 	'n': 'north',
 	's': 'south',
 	'e': 'east',

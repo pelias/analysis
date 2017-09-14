@@ -5,16 +5,16 @@ var requireDir = require('require-dir'),
     util = require('../../lib/util');
 
 function analyzer( ctx ){
-  var locale = ( ctx && 'string' === ctx.locale ) ? ctx.locale.toUpperCase() : 'ENG';
+  var locale = ( ctx && 'string' === typeof ctx.locale ) ? ctx.locale.toLowerCase() : 'en';
 
   return util.chain(
     tokenizer.diacritic.bind(ctx),
-    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map[ locale ] || {} } )),
     tokenizer.lowercase.bind(ctx),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, {
-      map: config.street_expansions[ locale ] || {},
+      map: config.dictionary( locale, 'street_types.txt' ),
       position: -1
     }))
   );

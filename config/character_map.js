@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.en = {
 
 	// custom mappings
 	'ß': 'ss',

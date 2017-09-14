@@ -12,14 +12,28 @@ module.exports.interface = function(test, util) {
 module.exports.english_expansions = function(test, util) {
 
   var analyzer = street({
-    locale: 'eng'
+    locale: 'en'
   });
 
   test('simple', function(t) {
     t.equal( analyzer('main street'), 'main street' );
     t.equal( analyzer('main St.'), 'main street' );
     t.equal( analyzer('main st.'), 'main street' );
+    t.equal( analyzer('main str'), 'main street' );
     t.equal( analyzer('main st'), 'main street' );
+    t.end();
+  });
+};
+
+module.exports.german_expansions = function(test, util) {
+
+  var analyzer = street({
+    locale: 'de'
+  });
+
+  test('simple', function(t) {
+    t.equal( analyzer('main street'), 'main street' );
+    t.equal( analyzer('main str'), 'main straße' );
     t.end();
   });
 };
