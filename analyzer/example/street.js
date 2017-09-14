@@ -5,17 +5,18 @@ var requireDir = require('require-dir'),
     util = require('../../lib/util');
 
 function analyzer( ctx ){
+  var locale = ( ctx && 'string' === ctx.locale ) ? ctx.locale.toUpperCase() : 'ENG';
+
   return util.chain(
-    tokenizer.unique,
     tokenizer.diacritic,
     tokenizer.charmap.bind({ map: config.character_map }),
     tokenizer.lowercase,
     tokenizer.ordinals,
     tokenizer.singular,
-    tokenizer.synonyms.bind({ map: config.first_token, position: 1 }),
-    tokenizer.synonyms.bind({ map: config.address_suffix }),
-    tokenizer.synonyms.bind({ map: config.directionals }),
-    tokenizer.unique
+    tokenizer.synonyms.bind({
+      map: config.street_expansions[ locale ] || {},
+      position: -1
+    })
   );
 }
 
