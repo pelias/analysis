@@ -6,16 +6,16 @@ var requireDir = require('require-dir'),
 
 function analyzer( ctx ){
   return util.chain(
-    tokenizer.unique,
-    tokenizer.diacritic,
-    tokenizer.charmap.bind({ map: config.character_map }),
-    tokenizer.lowercase,
-    tokenizer.ordinals,
-    tokenizer.singular,
-    tokenizer.synonyms.bind({ map: config.first_token, position: 1 }),
-    tokenizer.synonyms.bind({ map: config.address_suffix }),
-    tokenizer.synonyms.bind({ map: config.directionals }),
-    tokenizer.unique
+    tokenizer.unique.bind(ctx),
+    tokenizer.diacritic.bind(ctx),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
+    tokenizer.lowercase.bind(ctx),
+    tokenizer.ordinals.bind(ctx),
+    tokenizer.singular.bind(ctx),
+    tokenizer.synonyms.bind( util.merge(ctx, { map: config.first_token, position: 1 } )),
+    tokenizer.synonyms.bind( util.merge(ctx, { map: config.address_suffix } )),
+    tokenizer.synonyms.bind( util.merge(ctx, { map: config.directionals } )),
+    tokenizer.unique.bind(ctx)
   );
 }
 
