@@ -3,9 +3,9 @@
   prefixngram - split token in to prefix grams
 **/
 
-function prefixngram( res, cur ){
+function prefixngram( res, word ){
 
-  var chars = cur.split('');
+  var chars = word.split('');
   var buffer = '';
 
   chars.forEach( function( char ){

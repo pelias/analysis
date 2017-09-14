@@ -16,8 +16,8 @@ var regex = function() {
   return new RegExp( reg, 'gi' );
 }();
 
-function ordinals( res, cur ){
-  res.push( cur.replace( regex, replacement ) );
+function ordinals( res, word ){
+  res.push( word.replace( regex, replacement ) );
   return res;
 }
 

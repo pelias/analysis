@@ -6,10 +6,10 @@ var replace = require('batch-replace'),
   charmap - replace characters inside tokens
 
   context:
-  - map [object] - map all occurrences of {key} to {value}
+  - map [object] - map all ocwordrences of {key} to {value}
 **/
 
-function charmap( res, cur ){
+function charmap( res, word ){
 
   // build regular expressions for replacements (only once)
   if( !this.replacements ){
@@ -24,7 +24,7 @@ function charmap( res, cur ){
   }
 
   // perform replacements
-  var xformed = replace( cur, this.replacements );
+  var xformed = replace( word, this.replacements );
 
   // do not emit empty tokens
   if( xformed.length ){

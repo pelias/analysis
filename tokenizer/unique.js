@@ -3,8 +3,8 @@
   unique - remove duplicate tokens
 **/
 
-function unique( res, cur ){
-  return ~res.indexOf( cur ) ? res : res.concat([cur]);
+function unique( res, word ){
+  return ~res.indexOf( word ) ? res : res.concat([ word ]);
 }
 
 module.exports = unique;

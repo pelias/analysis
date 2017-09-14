@@ -7,7 +7,7 @@
   - position [int] - only replace tokens at this term position
 **/
 
-function synonyms( res, cur, pos, arr ){
+function synonyms( res, word, pos, arr ){
 
   if( !this.map ){ throw new Error( 'invalid map' ); }
 
@@ -15,14 +15,14 @@ function synonyms( res, cur, pos, arr ){
   if( !this.hasOwnProperty('position') || pos === ( this.position >= 0 ? this.position : this.position + arr.length ) ){
 
     // check map for substitution
-    if( this.map.hasOwnProperty( cur ) ){
+    if( this.map.hasOwnProperty( word ) ){
 
       // replace token with synonym
-      cur = this.map[ cur ];
+      word = this.map[ word ];
     }
   }
 
-  res.push( cur );
+  res.push( word );
 
   return res;
 }

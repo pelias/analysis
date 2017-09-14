@@ -3,8 +3,8 @@
   lowercase - convert tokens to lowercase
 **/
 
-function lowercase( res, cur ){
-  res.push( cur.toLowerCase() );
+function lowercase( res, word ){
+  res.push( word.toLowerCase() );
   return res;
 }
 

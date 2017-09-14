@@ -5,8 +5,8 @@ var removeAccents = require('remove-accents');
   diacritic - remove accents from characters
 **/
 
-function diacritic( res, cur ){
-  res.push( removeAccents( cur ) );
+function diacritic( res, word ){
+  res.push( removeAccents( word ) );
   return res;
 }
 
