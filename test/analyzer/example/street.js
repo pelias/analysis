@@ -33,7 +33,11 @@ module.exports.german_expansions = function(test, util) {
 
   test('simple', function(t) {
     t.equal( analyzer('main street'), 'main street' );
-    t.equal( analyzer('main str'), 'main straße' );
+    t.equal( analyzer('main straße'), 'main strasse' );
+    t.equal( analyzer('main Str.'), 'main strasse' );
+    t.equal( analyzer('main Str'), 'main strasse' );
+    t.equal( analyzer('main str.'), 'main strasse' );
+    t.equal( analyzer('main str'), 'main strasse' );
     t.end();
   });
 };

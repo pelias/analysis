@@ -9,7 +9,7 @@ function analyzer( ctx ){
 
   return util.chain(
     tokenizer.diacritic.bind(ctx),
-    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map[ locale ] || {} } )),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
     tokenizer.lowercase.bind(ctx),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),

@@ -11,7 +11,13 @@ module.exports = function( cc, filename ){
   var lines = file.trim().split('\n');
 
   var map = lines.reduce(( obj, line ) => {
-    var cols = line.trim().split('|');
+
+    // sort the columns so the longest token is considered canonical
+    // note: this is required for autocomplete
+    var cols = line.trim().split('|').sort(function(a, b) {
+      return b.length - a.length;
+    });
+
     cols.forEach(( col, pos ) => {
       if( !pos ){ return; } // skip first column ( the expansion )
       if( /[\.\s]/.test( col ) ){ return; } // skip multi-word and punctuated synonyms
