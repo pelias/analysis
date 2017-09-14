@@ -3,7 +3,6 @@ var path = require('path');
 var util = require('../lib/util');
 
 var tests = [
-  // './lib/Token',
   './tokenizer/unique',
   './tokenizer/diacritic',
   './tokenizer/charmap',
@@ -12,8 +11,7 @@ var tests = [
   './tokenizer/singular',
   './tokenizer/synonyms',
   './tokenizer/prefixngram',
-  './analyzer/example/index',
-  // './analyzer/example/search',
+  './analyzer/example/index'
 ];
 
 // test runner
