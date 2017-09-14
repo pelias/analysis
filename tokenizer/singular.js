@@ -7,9 +7,11 @@ var inflection = require('inflection');
 
 function singular( res, cur ){
 
-  res.push( cur.split(/\s+/).map( word => {
-    return word.length > 3 ? inflection.singularize( word ) : word;
-  }).join(' ') );
+  if( cur.length > 3 ){
+    res.push( inflection.singularize( cur ) );
+  } else {
+    res.push( cur );
+  }
 
   return res;
 }

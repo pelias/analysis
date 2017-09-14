@@ -7,29 +7,22 @@
   - position [int] - only replace tokens at this term position
 **/
 
-function synonyms( res, cur ){
+function synonyms( res, cur, pos, arr ){
 
   if( !this.map ){ throw new Error( 'invalid map' ); }
 
-  // split words
-  var words = cur.split(/\s+/);
+  // only substitute tokens in certain position (allow negative positions)
+  if( !this.hasOwnProperty('position') || pos === ( this.position >= 0 ? this.position : this.position + arr.length ) ){
 
-  res.push( words.map(( word, pos ) => {
+    // check map for substitution
+    if( this.map.hasOwnProperty( cur ) ){
 
-    // only substitute tokens in certain position (allow negative positions)
-    if( !this.hasOwnProperty('position') || pos === ( this.position >= 0 ? this.position : this.position + words.length ) ){
-
-      // check map for substitution
-      if( this.map.hasOwnProperty( word ) ){
-
-        // replace token with synonym
-        return this.map[ word ];
-      }
+      // replace token with synonym
+      cur = this.map[ cur ];
     }
+  }
 
-    return word;
-
-  }, this).join(' ') );
+  res.push( cur );
 
   return res;
 }

@@ -20,8 +20,8 @@ module.exports.synonyms = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'a b c abacus' ].reduce( tokenizer, [] ),
-      [ 'atest btest c abacus' ]
+      [ 'a', 'b', 'c', 'abacus' ].reduce( tokenizer, [] ),
+      [ 'atest', 'btest', 'c', 'abacus' ]
     );
 
     t.end();
@@ -59,8 +59,8 @@ module.exports.synonyms = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'a a a' ].reduce( tokenizer, [] ),
-      [ 'a atest a' ]
+      [ 'a', 'a', 'a' ].reduce( tokenizer, [] ),
+      [ 'a', 'atest', 'a' ]
     );
 
     t.end();
@@ -78,8 +78,8 @@ module.exports.synonyms = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'a a a' ].reduce( tokenizer, [] ),
-      [ 'atest a a' ]
+      [ 'a', 'a', 'a' ].reduce( tokenizer, [] ),
+      [ 'atest', 'a', 'a' ]
     );
 
     t.end();
@@ -97,8 +97,8 @@ module.exports.synonyms = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'a a a' ].reduce( tokenizer, [] ),
-      [ 'a a atest' ]
+      [ 'a', 'a', 'a' ].reduce( tokenizer, [] ),
+      [ 'a', 'a', 'atest' ]
     );
 
     t.end();
@@ -116,8 +116,8 @@ module.exports.synonyms = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'a b a', ].reduce( tokenizer, [] ),
-      [ 'atest btest atest' ]
+      [ 'a', 'b', 'a', ].reduce( tokenizer, [] ),
+      [ 'atest', 'btest', 'atest' ]
     );
 
     t.end();
@@ -137,8 +137,8 @@ module.exports.addresses = function(test, util) {
 
     // tokens have been replaced
     t.deepEqual(
-      [ 'st rd ave' ].reduce( tokenizer, [] ),
-      [ 'street road avenue' ]
+      [ 'st', 'rd', 'ave' ].reduce( tokenizer, [] ),
+      [ 'street', 'road', 'avenue' ]
     );
 
     t.end();
