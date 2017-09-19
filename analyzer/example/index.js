@@ -9,8 +9,8 @@ function analyzer( ctx ){
 
   return util.chain(
     tokenizer.unique.bind(ctx),
-    tokenizer.diacritic.bind(ctx),
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
+    tokenizer.diacritic.bind(ctx),
     tokenizer.lowercase.bind(ctx),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),

@@ -9,8 +9,11 @@ function analyzer( ctx ){
 
   return util.chain(
     tokenizer.diacritic.bind(ctx),
-    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
     tokenizer.lowercase.bind(ctx),
+    tokenizer.disjoin.bind( util.merge(ctx, {
+      map: config.dictionary( locale, 'concatenated_suffixes_separable.txt', true )
+    })),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, {

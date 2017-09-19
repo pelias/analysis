@@ -6,7 +6,7 @@ var removeAccents = require('remove-accents');
 **/
 
 function diacritic( res, word ){
-  res.push( removeAccents( word ) );
+  res.push( removeAccents( word.replace( /ß/g, 'ss' ) ) );
   return res;
 }
 

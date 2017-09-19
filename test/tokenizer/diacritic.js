@@ -17,3 +17,15 @@ module.exports.diacritic = function(test, util) {
     t.end();
   });
 };
+
+// substitution of eszett is not working as expected
+// see: https://github.com/tyxla/remove-accents/issues/12
+// module.exports.eszett = function(test, util) {
+//   test('test eszett', function(t) {
+//     t.deepEqual(
+//       [ 'straße' ].reduce( diacritic, [] ),
+//       [ 'strasse' ]
+//     );
+//     t.end();
+//   });
+// };

@@ -3,8 +3,10 @@ var path = require('path');
 var util = require('../lib/util');
 
 var tests = [
+  './config/dictionary',
   './tokenizer/unique',
   './tokenizer/diacritic',
+  './tokenizer/disjoin',
   './tokenizer/charmap',
   './tokenizer/lowercase',
   './tokenizer/ordinals',

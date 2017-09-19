@@ -15,12 +15,28 @@ module.exports.english_expansions = function(test, util) {
     locale: 'en'
   });
 
-  test('simple', function(t) {
-    t.equal( analyzer('main street'), 'main street' );
-    t.equal( analyzer('main St.'), 'main street' );
-    t.equal( analyzer('main st.'), 'main street' );
-    t.equal( analyzer('main str'), 'main street' );
-    t.equal( analyzer('main st'), 'main street' );
+  test('street', function(t) {
+    t.equal( analyzer('10 main street'), '10 main street' );
+    t.equal( analyzer('10 main St.'), '10 main street' );
+    t.equal( analyzer('10 main st.'), '10 main street' );
+    t.equal( analyzer('10 main str'), '10 main street' );
+    t.equal( analyzer('10 main st'), '10 main street' );
+    t.end();
+  });
+
+  test('road', function(t) {
+    t.equal( analyzer('10 main road'), '10 main road' );
+    t.equal( analyzer('10 main Rd.'), '10 main road' );
+    t.equal( analyzer('10 main rd.'), '10 main road' );
+    t.equal( analyzer('10 main rd'), '10 main road' );
+    t.end();
+  });
+
+  test('avenue', function(t) {
+    t.equal( analyzer('10 main avenue'), '10 main avenue' );
+    t.equal( analyzer('10 main Ave.'), '10 main avenue' );
+    t.equal( analyzer('10 main ave.'), '10 main avenue' );
+    t.equal( analyzer('10 main ave'), '10 main avenue' );
     t.end();
   });
 };
@@ -31,13 +47,19 @@ module.exports.german_expansions = function(test, util) {
     locale: 'de'
   });
 
-  test('simple', function(t) {
-    t.equal( analyzer('main street'), 'main street' );
-    t.equal( analyzer('main straße'), 'main strasse' );
-    t.equal( analyzer('main Str.'), 'main strasse' );
-    t.equal( analyzer('main Str'), 'main strasse' );
-    t.equal( analyzer('main str.'), 'main strasse' );
-    t.equal( analyzer('main str'), 'main strasse' );
+  test('strasse - compound word', function(t) {
+    t.equal( analyzer('10 hauptstrasse'), '10 hauptstrasse' );
+    t.equal( analyzer('10 hauptstraße'), '10 hauptstrasse' );
+    t.equal( analyzer('10 hauptstr.'), '10 hauptstrasse' );
+    t.equal( analyzer('10 hauptstr'), '10 hauptstrasse' );
+    t.end();
+  });
+
+  test('bruecke', function(t) {
+    t.equal( analyzer('10 haupt bruecke'), '10 haupt bruecke' );
+    t.equal( analyzer('10 haupt brücke'), '10 haupt bruecke' );
+    t.equal( analyzer('10 haupt br.'), '10 haupt bruecke' );
+    t.equal( analyzer('10 haupt br'), '10 haupt bruecke' );
     t.end();
   });
 };
