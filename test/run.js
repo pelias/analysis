@@ -3,7 +3,11 @@ var path = require('path');
 var util = require('../lib/util');
 
 var tests = [
+  './config/address_suffix',
+  './config/character_map',
   './config/dictionary',
+  './config/directionals',
+  './config/first_token',
   './tokenizer/unique',
   './tokenizer/diacritic',
   './tokenizer/disjoin',
