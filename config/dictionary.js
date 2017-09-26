@@ -14,6 +14,7 @@ var path = require('path');
   - cc (string) country-code corresponding to a subdirectory in the the ./directories folder
   - filename (string) the name of the file to load inside the directory mentioed above
   - includeSelfReferences (bool) whether to also include the canonical synonym in the map
+  - minLength (int) minimum valid length for a synonym in the dictionary
 
   output example:
   {
@@ -24,7 +25,10 @@ var path = require('path');
   }
  */
 
-module.exports = function( cc, filename, includeSelfReferences ){
+// regular expression to target removal of common punctuation
+var PUNCTUATION_REGEX = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
+
+module.exports = function( cc, filename, includeSelfReferences, minLength ){
 
   try {
     var file = fs.readFileSync( path.resolve( __dirname, '..', 'dictionaries', cc, filename ) ).toString();
@@ -41,6 +45,7 @@ module.exports = function( cc, filename, includeSelfReferences ){
       cols.forEach(( col, pos ) => {
         if( !includeSelfReferences && 0 === pos ){ return; } // skip first column ( the expansion )
         if( /[\s]/.test( col ) ){ return; } // skip multi-word synonyms
+        if( col.replace( PUNCTUATION_REGEX ).length < ( minLength || 0 ) ){ return; } // skip very short synonyms
         obj[ col ] = cols[ 0 ];
       });
       return obj;

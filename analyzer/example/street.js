@@ -20,8 +20,8 @@ function analyzer( ctx ){
       positions: [ -2, -1 ]
     })),
     tokenizer.synonyms.bind( util.merge(ctx, {
-      map: config.dictionary( locale, 'street_types.txt' ),
-      positions: [ -2, -1 ]
+      map: config.dictionary( locale, 'street_types.txt', null, 2 ),
+      positions: [ -2, -1 ],
     })),
     tokenizer.synonyms.bind( util.merge(ctx, {
       map: config.dictionary( locale, 'directionals.txt' ),

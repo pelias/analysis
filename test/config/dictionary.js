@@ -4,7 +4,7 @@ var dictionary = require('../../config/dictionary');
 module.exports.interface = function(test, util) {
   test('interface', function(t) {
     t.equal(typeof dictionary, 'function', 'dictionary is a function');
-    t.equal(dictionary.length, 3, 'accepts 3 arguments');
+    t.equal(dictionary.length, 4, 'accepts 4 arguments');
     t.end();
   });
 };
@@ -30,6 +30,16 @@ module.exports.dictionary = function(test, util) {
     t.equal( map.str, 'street' );
     t.equal( map.st, 'street' );
     t.equal( map.street, 'street' ); // self reference included
+
+    t.end();
+  });
+
+  test('load dictionary - minimum length', function(t) {
+
+    var map = dictionary( 'en', 'street_types.txt', false, 20 );
+
+    // only 7 synonyms 20 chars in length or more
+    t.equal( Object.keys(map).length, 7 );
 
     t.end();
   });

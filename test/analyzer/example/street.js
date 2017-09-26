@@ -101,4 +101,12 @@ module.exports.german_expansions = function(test, util) {
     t.equal( analyzer('max-beer-straße'), 'Max-Beer-Strasse' );
     t.end();
   });
+
+  test('misc', function(t) {
+    t.equal( analyzer('Weg A'), 'Weg A' );
+    t.equal( analyzer('Weg D'), 'Weg D' );
+    t.equal( analyzer('Weg G'), 'Weg G' );
+    t.equal( analyzer('Weg H'), 'Weg H' );
+    t.end();
+  });
 };
