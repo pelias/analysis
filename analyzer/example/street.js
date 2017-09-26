@@ -10,8 +10,7 @@ function analyzer( ctx ){
   return util.chain(
     tokenizer.lettercase.bind( util.merge(ctx, { func: tokenizer.lettercase.method.lower } )),
     tokenizer.disjoin.bind( util.merge(ctx, {
-      map: config.dictionary( locale, 'concatenated_suffixes_separable.txt', true ),
-      split: true
+      map: config.dictionary( locale, 'concatenated_suffixes_separable.txt', true )
     })),
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map.punctuation } )),
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map[ locale ] || {} } )),
