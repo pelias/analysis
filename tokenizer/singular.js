@@ -1,23 +1,19 @@
 
-var through = require('through2'),
-    inflection = require('inflection');
+var inflection = require('inflection');
 
 /**
   singular - convert token to singular form
 **/
 
-function factory( options ){
-  options = options || {};
+function singular( res, word ){
 
-  return through.obj( function( token, _, next ){
+  if( word.length > 3 ){
+    res.push( inflection.singularize( word ) );
+  } else {
+    res.push( word );
+  }
 
-    if( token.body.length > 3 ){
-      token.body = inflection.singularize( token.body );
-    }
-    this.push( token );
-
-    next();
-  });
+  return res;
 }
 
-module.exports = factory;
+module.exports = singular;

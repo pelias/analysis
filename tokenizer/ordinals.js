@@ -1,6 +1,4 @@
 
-var through = require('through2');
-
 /**
   ordinals - remove ordinals (such as the 'st' from '21st')
 **/
@@ -18,16 +16,9 @@ var regex = function() {
   return new RegExp( reg, 'gi' );
 }();
 
-function factory( options ){
-  options = options || {};
-
-  return through.obj( function( token, _, next ){
-
-    token.body = token.body.replace( regex, replacement );
-    this.push( token );
-
-    next();
-  });
+function ordinals( res, word ){
+  res.push( word.replace( regex, replacement ) );
+  return res;
 }
 
-module.exports = factory;
+module.exports = ordinals;

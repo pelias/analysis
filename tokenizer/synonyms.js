@@ -1,42 +1,32 @@
 
-var through = require('through2');
-
 /**
   synonyms - replace tokens with synonyms
 
-  options:
+  context:
   - map [object] - map all occurrences of {key} to {value}
-  - keepOriginal [bool] - also keep the original token
-  - position [int] - only replace tokens at this term position
+  - positions [array of ints] - only replace tokens at this term positions
 **/
 
-function factory( options ){
-  options = options || {};
-  options.map = options.map || {};
+function synonyms( res, word, pos, arr ){
 
-  return through.obj( function( token, _, next ){
+  if( !this.map ){ throw new Error( 'invalid map' ); }
 
-    // only substitute tokens in certain position
-    if( !options.hasOwnProperty('position') || options.position === token.position ){
+  // only substitute tokens in certain positions (allow negative positions)
+  if( !Array.isArray( this.positions ) || this.positions.some( termpos => {
+    return pos === ( termpos >= 0 ? termpos : termpos + arr.length )
+  })){
 
-      // check map for substitution
-      if( options.map.hasOwnProperty( token.body ) ){
+    // check map for substitution
+    if( this.map.hasOwnProperty( word ) ){
 
-        // $keepOriginal flag allows control over whether
-        // the original token is discarded or not.
-        if( true === options.keepOriginal ){
-          var token2 = token.clone();
-          this.push( token2 );
-        }
-
-        // replace token with synonym
-        token.body = options.map[ token.body ];
-      }
+      // replace token with synonym
+      word = this.map[ word ];
     }
+  }
 
-    this.push( token );
-    next();
-  });
+  res.push( word );
+
+  return res;
 }
 
-module.exports = factory;
+module.exports = synonyms;

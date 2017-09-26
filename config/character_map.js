@@ -1,14 +1,26 @@
-module.exports = {
 
-	// custom mappings
+module.exports.en = {
+	'&': 'and'
+};
+
+module.exports.de = {
+	'Ä': 'Ae',
+	'ä': 'ae',
+	'Ö': 'Oe',
+	'ö': 'oe',
+	'Ü': 'Ue',
+	'ü': 'ue',
 	'ß': 'ss',
-	'&': 'and',
+	'&': 'und'
+};
 
-	// remove punctuation
+module.exports.punctuation = {
+
+	// remove general punctuation
 	',': '',
 	'.': '',
 	'`': '',
-	'-': '',
+	// '-': '',
 	'_': '',
 	'=': '',
 	'?': '',
