@@ -27,6 +27,7 @@ function analyzer( ctx ){
       map: config.dictionary( locale, 'directionals.txt' ),
       positions: [ 0, -1 ]
     })),
+    tokenizer.synonyms.bind( util.merge(ctx, { map: config.first_token[locale] || {}, positions: [ 0 ] } )),
     tokenizer.lettercase.bind( util.merge(ctx, { func: tokenizer.lettercase.method.ucfirst } ))
   );
 }

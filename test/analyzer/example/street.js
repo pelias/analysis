@@ -47,6 +47,7 @@ module.exports.english_expansions = function(test, util) {
     t.equal( analyzer('W  FARMS SQ PLAZA'), 'West Farms Square Plaza' );
     t.equal( analyzer('W  262 ST'), 'West 262 Street' );
     t.equal( analyzer('W 26TH ST'), 'West 26 Street' );
+    t.equal( analyzer('WILLIE MC DONALD WAY'), 'Willie Mc Donald Way' );
     t.end();
   });
 
@@ -56,6 +57,13 @@ module.exports.english_expansions = function(test, util) {
     t.equal( analyzer('WILLIAMSBURG ST   E'), 'Williamsburg Street East' );
     t.equal( analyzer('W  MOSHOLU PKWY  N'), 'West Mosholu Parkway North' );
     t.equal( analyzer('W  MOSHOLU PKWY  S'), 'West Mosholu Parkway South' );
+    t.equal( analyzer('S  WILLIAM ST'), 'South William Street' );
+    t.end();
+  });
+
+  test('prefix expansions', function(t) {
+    t.equal( analyzer('ST JAMES AVE'), 'Saint James Avenue' );
+    t.equal( analyzer('ST NICHOLAS TER'), 'Saint Nicholas Terrasse' );
     t.end();
   });
 };
