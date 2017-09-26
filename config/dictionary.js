@@ -14,7 +14,7 @@ var path = require('path');
   - cc (string) country-code corresponding to a subdirectory in the the ./directories folder
   - filename (string) the name of the file to load inside the directory mentioed above
   - includeSelfReferences (bool) whether to also include the canonical synonym in the map
- 
+
   output example:
   {
     'bruecke': 'bruecke',

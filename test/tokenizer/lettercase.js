@@ -43,8 +43,8 @@ module.exports.lettercase = function(test, util) {
   test('test lettercase - ucfirst word boundaries', function(t) {
     var ctx = { func: lettercase.method.ucfirst };
     t.deepEqual(
-      [ 'Hello WoRLd', 'hello-world' ].reduce( lettercase.bind(ctx), [] ),
-      [ 'Hello World', 'Hello-World' ]
+      [ 'Hello WoRLd', 'hello-world', 'Zwiestädter Straße' ].reduce( lettercase.bind(ctx), [] ),
+      [ 'Hello World', 'Hello-World', 'Zwiestädter Straße' ]
     );
     t.end();
   });

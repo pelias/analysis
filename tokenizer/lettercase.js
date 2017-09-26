@@ -9,7 +9,7 @@
 const method = {
   'lower': (string) => { return string.toLowerCase(); },
   'upper': (string) => { return string.toUpperCase(); },
-  'ucfirst': (string) => { return string.toLowerCase().replace(/\b\w/g, l => l.toUpperCase()); },
+  'ucfirst': (string) => { return string.toLowerCase().replace(/(^|[\s-])\w{1}/g, l => l.toUpperCase()); },
 };
 
 function lettercase( res, word ){

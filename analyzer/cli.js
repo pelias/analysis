@@ -15,7 +15,7 @@ try {
 	});
 
 	rl.on('line', function(line){
-	    console.log( analyzer( line ) );
+	  console.log( analyzer( line ) );
 	})
 }
 catch( e ){

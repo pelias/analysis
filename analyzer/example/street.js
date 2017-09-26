@@ -13,7 +13,8 @@ function analyzer( ctx ){
       map: config.dictionary( locale, 'concatenated_suffixes_separable.txt', true ),
       split: true
     })),
-    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map } )),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map.punctuation } )),
+    tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map[ locale ] || {} } )),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, {
