@@ -13,6 +13,7 @@ var tests = [
   './tokenizer/disjoin',
   './tokenizer/charmap',
   './tokenizer/lowercase',
+  './tokenizer/lettercase',
   './tokenizer/ordinals',
   './tokenizer/singular',
   './tokenizer/synonyms',
