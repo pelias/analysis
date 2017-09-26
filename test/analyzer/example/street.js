@@ -43,6 +43,10 @@ module.exports.english_expansions = function(test, util) {
     t.equal( analyzer('YELLOWSTONE BLVD'), 'Yellowstone Boulevarde' );
     t.equal( analyzer('YESHIVA LN'), 'Yeshiva Lane' );
     t.equal( analyzer('WYGANT PL'), 'Wygant Place' );
+    t.equal( analyzer('THROGS NECK EXPY SR'), 'Throgs Neck Expressway State Route' );
+    t.equal( analyzer('W  FARMS SQ PLAZA'), 'West Farms Square Plaza' );
+    t.equal( analyzer('W  262 ST'), 'West 262 Street' );
+    t.equal( analyzer('W 26TH ST'), 'West 26 Street' );
     t.end();
   });
 
@@ -50,6 +54,8 @@ module.exports.english_expansions = function(test, util) {
     t.equal( analyzer('W  KINGSBRIDGE RD'), 'West Kingsbridge Road' );
     t.equal( analyzer('W  MOSHOLU PKWY  S'), 'West Mosholu Parkway South' );
     t.equal( analyzer('WILLIAMSBURG ST   E'), 'Williamsburg Street East' );
+    t.equal( analyzer('W  MOSHOLU PKWY  N'), 'West Mosholu Parkway North' );
+    t.equal( analyzer('W  MOSHOLU PKWY  S'), 'West Mosholu Parkway South' );
     t.end();
   });
 };
