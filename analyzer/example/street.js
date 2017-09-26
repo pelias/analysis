@@ -15,7 +15,6 @@ function analyzer( ctx ){
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map.punctuation } )),
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map[ locale ] || {} } )),
     tokenizer.ordinals.bind(ctx),
-    tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, {
       map: config.dictionary( locale, 'street_types_overrides.txt' ),
       positions: [ -2, -1 ]
