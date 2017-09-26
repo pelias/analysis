@@ -38,6 +38,20 @@ module.exports.english_expansions = function(test, util) {
     t.equal( analyzer('10 main ave'), '10 Main Avenue' );
     t.end();
   });
+
+  test('misc', function(t) {
+    t.equal( analyzer('YELLOWSTONE BLVD'), 'Yellowstone Boulevarde' );
+    t.equal( analyzer('YESHIVA LN'), 'Yeshiva Lane' );
+    t.equal( analyzer('WYGANT PL'), 'Wygant Place' );
+    t.end();
+  });
+
+  test('directionals', function(t) {
+    t.equal( analyzer('W  KINGSBRIDGE RD'), 'West Kingsbridge Road' );
+    t.equal( analyzer('W  MOSHOLU PKWY  S'), 'West Mosholu Parkway South' );
+    t.equal( analyzer('WILLIAMSBURG ST   E'), 'Williamsburg Street East' );
+    t.end();
+  });
 };
 
 module.exports.german_expansions = function(test, util) {

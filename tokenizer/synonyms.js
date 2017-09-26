@@ -4,15 +4,17 @@
 
   context:
   - map [object] - map all occurrences of {key} to {value}
-  - position [int] - only replace tokens at this term position
+  - positions [array of ints] - only replace tokens at this term positions
 **/
 
 function synonyms( res, word, pos, arr ){
 
   if( !this.map ){ throw new Error( 'invalid map' ); }
 
-  // only substitute tokens in certain position (allow negative positions)
-  if( !this.hasOwnProperty('position') || pos === ( this.position >= 0 ? this.position : this.position + arr.length ) ){
+  // only substitute tokens in certain positions (allow negative positions)
+  if( !Array.isArray( this.positions ) || this.positions.some( termpos => {
+    return pos === ( termpos >= 0 ? termpos : termpos + arr.length )
+  })){
 
     // check map for substitution
     if( this.map.hasOwnProperty( word ) ){

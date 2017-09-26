@@ -17,8 +17,16 @@ function analyzer( ctx ){
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, {
+      map: config.dictionary( locale, 'street_types_overrides.txt' ),
+      positions: [ -2, -1 ]
+    })),
+    tokenizer.synonyms.bind( util.merge(ctx, {
       map: config.dictionary( locale, 'street_types.txt' ),
-      position: -1
+      positions: [ -2, -1 ]
+    })),
+    tokenizer.synonyms.bind( util.merge(ctx, {
+      map: config.dictionary( locale, 'directionals.txt' ),
+      positions: [ 0, -1 ]
     })),
     tokenizer.lettercase.bind( util.merge(ctx, { func: tokenizer.lettercase.method.ucfirst } ))
   );

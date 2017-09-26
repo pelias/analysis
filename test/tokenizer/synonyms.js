@@ -50,7 +50,7 @@ module.exports.synonyms = function(test, util) {
   test('specific position', function(t) {
 
     var ctx = {
-      position: 1,
+      positions: [ 1 ],
       map: {
         'a': 'atest'
       }};
@@ -69,7 +69,7 @@ module.exports.synonyms = function(test, util) {
   test('first position', function(t) {
 
     var ctx = {
-      position: 0,
+      positions: [ 0 ],
       map: {
         'a': 'atest'
       }};
@@ -88,7 +88,7 @@ module.exports.synonyms = function(test, util) {
   test('last position', function(t) {
 
     var ctx = {
-      position: -1,
+      positions: [ -1 ],
       map: {
         'a': 'atest'
       }};

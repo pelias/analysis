@@ -14,7 +14,7 @@ function analyzer( ctx ){
     tokenizer.lowercase.bind(ctx),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
-    tokenizer.synonyms.bind( util.merge(ctx, { map: config.first_token[locale] || {}, position: 1 } )),
+    tokenizer.synonyms.bind( util.merge(ctx, { map: config.first_token[locale] || {}, positions: [ 0 ] } )),
     tokenizer.synonyms.bind( util.merge(ctx, { map: config.address_suffix[locale] || {} } )),
     tokenizer.synonyms.bind( util.merge(ctx, { map: config.directionals[locale] || {} } )),
     tokenizer.unique.bind(ctx)
