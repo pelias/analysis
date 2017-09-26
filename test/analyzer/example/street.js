@@ -48,10 +48,10 @@ module.exports.german_expansions = function(test, util) {
   });
 
   test('strasse - compound word', function(t) {
-    t.equal( analyzer('10 hauptstrasse'), '10 hauptstrasse' );
-    t.equal( analyzer('10 hauptstraße'), '10 hauptstrasse' );
-    t.equal( analyzer('10 hauptstr.'), '10 hauptstrasse' );
-    t.equal( analyzer('10 hauptstr'), '10 hauptstrasse' );
+    t.equal( analyzer('10 hauptstrasse'), '10 haupt strasse' );
+    t.equal( analyzer('10 hauptstraße'), '10 haupt strasse' );
+    t.equal( analyzer('10 hauptstr.'), '10 haupt strasse' );
+    t.equal( analyzer('10 hauptstr'), '10 haupt strasse' );
     t.end();
   });
 
@@ -60,6 +60,18 @@ module.exports.german_expansions = function(test, util) {
     t.equal( analyzer('10 haupt brücke'), '10 haupt bruecke' );
     t.equal( analyzer('10 haupt br.'), '10 haupt bruecke' );
     t.equal( analyzer('10 haupt br'), '10 haupt bruecke' );
+    t.end();
+  });
+
+  test('umlaut', function(t) {
+    t.equal( analyzer('zwiestädter straße'), 'zwiestaedter strasse' );
+    t.equal( analyzer('zweibrücker straße'), 'zweibruecker strasse' );
+    t.equal( analyzer('zur börse'), 'zur boerse' );
+    t.end();
+  });
+
+  test('hyphen', function(t) {
+    t.equal( analyzer('max-beer-straße'), 'max-beer-strasse' );
     t.end();
   });
 };
