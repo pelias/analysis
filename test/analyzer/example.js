@@ -1,17 +1,17 @@
 
-var index = require('../../../analyzer/example/index');
+var example = require('../../analyzer/example');
 
 module.exports.interface = function(test, util) {
   test('analyzer', function(t) {
-    t.equal(typeof index, 'function', 'analyzer is a function');
-    t.equal(index.length, 1, 'analyzer accepts context');
+    t.equal(typeof example, 'function', 'analyzer is a function');
+    t.equal(example.length, 1, 'analyzer accepts context');
     t.end();
   });
 };
 
-module.exports.index = function(test, util) {
+module.exports.example = function(test, util) {
 
-  var analyzer = index();
+  var analyzer = example();
 
   test('simple', function(t) {
     t.equal( analyzer('Hello World'), 'hello world' );

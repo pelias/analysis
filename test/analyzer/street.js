@@ -1,4 +1,4 @@
-var street = require('../../../analyzer/example/street');
+var street = require('../../analyzer/street');
 
 module.exports.interface = function(test, util) {
   test('analyzer', function(t) {

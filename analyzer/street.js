@@ -1,8 +1,8 @@
 
 var requireDir = require('require-dir'),
-    tokenizer = requireDir('../../tokenizer'),
-    config = requireDir('../../config'),
-    util = require('../../lib/util');
+    tokenizer = requireDir('../tokenizer'),
+    config = requireDir('../config'),
+    util = require('../lib/util');
 
 function analyzer( ctx ){
   var locale = ( ctx && 'string' === typeof ctx.locale ) ? ctx.locale.toLowerCase() : 'en';

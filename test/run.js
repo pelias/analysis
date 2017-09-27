@@ -18,8 +18,8 @@ var tests = [
   './tokenizer/singular',
   './tokenizer/synonyms',
   './tokenizer/prefixngram',
-  './analyzer/example/index',
-  './analyzer/example/street'
+  './analyzer/example',
+  './analyzer/street'
 ];
 
 // test runner

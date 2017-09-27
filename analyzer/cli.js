@@ -12,7 +12,7 @@ if( tty.isatty( process.stdin ) ){
 
 try {
 	var ctx = { locale: locale };
-	var analyzer = require('./example/' + analyzerName).call(null, ctx);
+	var analyzer = require('./' + analyzerName).call(null, ctx);
 
 	var rl = readline.createInterface({
 	  input: process.stdin,
