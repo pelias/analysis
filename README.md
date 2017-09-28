@@ -18,7 +18,6 @@ analyzer('main str s')
 Analyzers also accept a 'context' object which is available throughout the analysis pipeline:
 
 ```javascript
-var street = require('./analyzer/street')
 var analyzer = street({ locale: 'de' })
 
 analyzer('main str s')
@@ -27,7 +26,7 @@ analyzer('main str s')
 
 ## Using Tokenizers
 
-Tokenizers are intended to be used as part of an analyzer, but can also be used independently by calling `Array.reduce' on an array of tokens:
+Tokenizers are intended to be used as part of an analyzer, but can also be used independently by calling `Array.reduce` on an array of tokens:
 
 ```javascript
 var tokenizer = require('./tokenizer/diacritic')
@@ -65,7 +64,7 @@ var tokenizer = function( res, word, pos, arr ){
 }
 ```
 
-A tokenizer can modify choose what words are pushed downstream, and can also push more than one word to the response array:
+A tokenizer can choose which words are pushed downstream, it can also modify words and push more than one word on to the response array:
 
 ```javascript
 // a split tokenizer cuts a string on word boudaries, producing mutiple words
@@ -93,7 +92,7 @@ More advanced tokenizers require information about the context in which they wer
 Context is provided to tokenizers by using `Function.bind` to bind the context to the tokenizer. This information will then be available inside the tokenizer using the `this` keyword:
 
 ```javascript
-// an abbreviation expansion tokenizer converts the contracted form of a word to its equivalent expanded form
+// an abbreviation tokenizer converts the contracted form of a word to its equivalent expanded form
 var tokenizer = function( res, word, pos, arr ){
 
 	// detect the input locale (or default to english)
@@ -119,6 +118,8 @@ var tokenizer = function( res, word, pos, arr ){
 	return res
 }
 ```
+
+You can then control the runtime context of the analyzer using `Function.bind`:
 
 ```javascript
 var english = tokenizer.bind({ locale: 'en' })
