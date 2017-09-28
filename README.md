@@ -45,8 +45,8 @@ In their simplest form a tokenizer is written as:
 // a delete-all tokenizer emits no words
 var tokenizer = function( res, word, pos, arr ){
 
-	// you must always return $res
-	return res
+  // you must always return $res
+  return res
 }
 ```
 
@@ -56,11 +56,11 @@ For a tokenizer to have no effect on the token stream it must `res.push()` on to
 // a no-op tokenizer emits words verbatim as they were taken in
 var tokenizer = function( res, word, pos, arr ){
 
-	// push the word on to the response array unmodified
-	res.push( word )
+  // push the word on to the response array unmodified
+  res.push( word )
 
-	// you must always return $res
-	return res
+  // you must always return $res
+  return res
 }
 ```
 
@@ -70,16 +70,16 @@ A tokenizer can choose which words are pushed downstream, it can also modify wor
 // a split tokenizer cuts a string on word boudaries, producing mutiple words
 var tokenizer = function( res, word, pos, arr ){
 
-	// split the input word on word boundaries
-	var parts = word.split(/\b/g)
+  // split the input word on word boundaries
+  var parts = word.split(/\b/g)
 
-	// push each part downstream
-	parts.forEach( function( part ){
-		res.push( part )
-	})
+  // push each part downstream
+  parts.forEach( function( part ){
+    res.push( part )
+  })
 
-	// you must always return $res
-	return res
+  // you must always return $res
+  return res
 }
 ```
 
@@ -95,27 +95,27 @@ Context is provided to tokenizers by using `Function.bind` to bind the context t
 // an abbreviation tokenizer converts the contracted form of a word to its equivalent expanded form
 var tokenizer = function( res, word, pos, arr ){
 
-	// detect the input locale (or default to english)
-	var locale = this.locale || 'en'
+  // detect the input locale (or default to english)
+  var locale = this.locale || 'en'
 
-	if( 'str.' === word ){
-		switch( locale ){
-			case 'de':
-				// transform to German expansion
-				res.push( 'strasse' )
-				return res
-			case 'en':
-				// transform to English expansion
-				res.push( 'street' )
-				return res
-		}
-	}
+  if( 'str.' === word ){
+    switch( locale ){
+      case 'de':
+        // transform to German expansion
+        res.push( 'strasse' )
+        return res
+      case 'en':
+        // transform to English expansion
+        res.push( 'street' )
+        return res
+    }
+  }
 
-	// push the word on to the response array unmodified
-	res.push( word )
+  // push the word on to the response array unmodified
+  res.push( word )
 
-	// you must always return $res
-	return res
+  // you must always return $res
+  return res
 }
 ```
 
@@ -175,8 +175,8 @@ $ diff \
   nyc.names \
   <(node analyzer/cli.js en street < nyc.names)
 
-ZEBRA PL						      |	Zebra Place
-ZECK CT							      |	Zeck Court
-ZEPHYR AVE						      |	Zephyr Avenue
+ZEBRA PL                  | Zebra Place
+ZECK CT                   | Zeck Court
+ZEPHYR AVE                  | Zephyr Avenue
 ... etc
 ```
