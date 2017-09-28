@@ -12,7 +12,6 @@ var tests = [
   './tokenizer/diacritic',
   './tokenizer/disjoin',
   './tokenizer/charmap',
-  './tokenizer/lowercase',
   './tokenizer/lettercase',
   './tokenizer/ordinals',
   './tokenizer/singular',

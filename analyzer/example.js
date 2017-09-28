@@ -11,7 +11,7 @@ function analyzer( ctx ){
     tokenizer.unique.bind(ctx),
     tokenizer.charmap.bind( util.merge(ctx, { map: config.character_map.punctuation } )),
     tokenizer.diacritic.bind(ctx),
-    tokenizer.lowercase.bind(ctx),
+    tokenizer.lettercase.bind( util.merge(ctx, { func: tokenizer.lettercase.method.lower } )),
     tokenizer.ordinals.bind(ctx),
     tokenizer.singular.bind(ctx),
     tokenizer.synonyms.bind( util.merge(ctx, { map: config.first_token[locale] || {}, positions: [ 0 ] } )),
