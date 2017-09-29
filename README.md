@@ -172,6 +172,8 @@ $ diff \
   --side-by-side \
   --ignore-blank-lines \
   --suppress-common-lines \
+  --width=100 \
+  --expand-tabs \
   nyc.names \
   <(node analyzer/cli.js en street < nyc.names)
 
@@ -179,4 +181,18 @@ ZEBRA PL                  | Zebra Place
 ZECK CT                   | Zeck Court
 ZEPHYR AVE                  | Zephyr Avenue
 ... etc
+```
+
+## Running tests
+
+units test are run with:
+
+```bash
+$ npm test
+```
+
+functional tests are run with:
+
+```bash
+$ npm run funcs
 ```
