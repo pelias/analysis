@@ -67,7 +67,7 @@ var tokenizer = function( res, word, pos, arr ){
 A tokenizer can choose which words are pushed downstream, it can also modify words and push more than one word on to the response array:
 
 ```javascript
-// a split tokenizer cuts a string on word boudaries, producing mutiple words
+// a split tokenizer cuts a string on word boudaries, producing multiple words
 var tokenizer = function( res, word, pos, arr ){
 
   // split the input word on word boundaries
