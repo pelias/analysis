@@ -27,7 +27,7 @@
     "batch-replace": "^1.1.3",
     "inflection": "^1.12.0",
     "remove-accents": "^0.4.1",
-    "require-dir": "^0.3.1"
+    "require-dir": "^1.0.0"
   },
   "devDependencies": {
     "tap-spec": "^4.1.1",
