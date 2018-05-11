@@ -1,6 +1,6 @@
 {
   "name": "pelias-analysis",
-  "version": "1.1.0",
+  "version": "0.0.0-development",
   "author": "mapzen",
   "description": "Analysis libraries",
   "homepage": "https://github.com/pelias/analysis",
@@ -30,6 +30,7 @@
     "require-dir": "^1.0.0"
   },
   "devDependencies": {
+    "semantic-release": "^15.4.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   }
