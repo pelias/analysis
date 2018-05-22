@@ -1,7 +1,7 @@
 {
   "name": "pelias-analysis",
   "version": "0.0.0-development",
-  "author": "mapzen",
+  "author": "Pelias",
   "description": "Analysis libraries",
   "homepage": "https://github.com/pelias/analysis",
   "license": "MIT",
@@ -33,5 +33,8 @@
     "semantic-release": "^15.4.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
+  },
+  "release": {
+    "success": []
   }
 }
