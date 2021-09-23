@@ -9,7 +9,7 @@
   "scripts": {
     "test": "node test/units.js | tap-spec",
     "funcs": "node test/funcs.js | tap-spec",
-    "travis": "npm run test && npm run funcs",
+    "ci": "npm run test && npm run funcs",
     "analyzer": "node analyzer/cli.js"
   },
   "repository": {
