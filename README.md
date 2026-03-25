@@ -24,7 +24,6 @@ We think open data, open source, and open strategy win over proprietary solution
 
 # Pelias analysis libraries
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/analysis.svg)](https://greenkeeper.io/)
 
 This repository contains prebuild textual analysis functions (analyzers) which are composed of smaller modules (tokenizers), each tokenizer performs actions such as transforming, filtering and enriching word tokens.
 
